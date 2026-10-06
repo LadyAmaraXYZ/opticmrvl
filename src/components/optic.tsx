@@ -1,7 +1,26 @@
 import { useState } from "react";
 
+const POST = `$OPTIC
+
+The processor is not the constraint.
+The light between them is.
+
+Investor Day. New York. 6 October 2026.
+Two businesses on the table. Custom chips. And the light between them.
+
+The page is open.
+The pair is MRVL, on Pons.
+Not the share. Not the company. Not Marvel.
+
+opticmrvl.xyz`;
+
 const STOCK = "0x62fd0668e10d8b72339be2dcf7643001688ff13b";
 
+const CARDS = [
+  { src: "/optic/tg-wide.jpg", alt: "Channel card. Three colors of light down a dark aisle." },
+  { src: "/optic/tg-square.jpg", alt: "Square card. One fiber burning amber, cyan, and magenta." },
+  { src: "/optic/tg-story.jpg", alt: "Tall card. An optical module in amber, cyan, and magenta." },
+];
 const FIGURES = [
   { k: "Fiscal 2028", v: "$20B", n: "Raised from $18B. The street had $18.2B." },
   { k: "Fiscal 2031", v: "$70–90B", n: "The first year they put a number on." },
@@ -10,7 +29,17 @@ const FIGURES = [
 
 export function Optic() {
   const [copied, setCopied] = useState(false);
+  const [postCopied, setPostCopied] = useState(false);
 
+  async function copyPost() {
+    try {
+      await navigator.clipboard.writeText(POST);
+      setPostCopied(true);
+      window.setTimeout(() => setPostCopied(false), 1600);
+    } catch {
+      setPostCopied(false);
+    }
+  }
   async function copyStock() {
     try {
       await navigator.clipboard.writeText(STOCK);
@@ -137,6 +166,39 @@ export function Optic() {
               </button>
             </div>
           </dl>
+        </div>
+      </section>
+
+      <section className="border-t border-line">
+        <div className="mx-auto max-w-6xl px-5 py-16 sm:py-24">
+          <p className="text-sm uppercase tracking-widest text-signal">Telegram</p>
+          <h2 className="font-display mt-3 max-w-xl text-balance text-4xl">
+            Three colors. One post.
+          </h2>
+          <p className="mt-4 max-w-xl text-pretty text-dim">
+            The channel cards. Amber, cyan, magenta. Same sentence as the page.
+            Copy the text, attach a card.
+          </p>
+          <div className="mt-10 grid gap-4 sm:grid-cols-3">
+            {CARDS.map((card) => (
+              <img
+                key={card.src}
+                src={card.src}
+                alt={card.alt}
+                className="w-full rounded-card object-cover"
+              />
+            ))}
+          </div>
+          <pre className="mt-8 whitespace-pre-wrap rounded-card border border-line p-5 text-sm leading-relaxed text-paper">
+            {POST}
+          </pre>
+          <button
+            type="button"
+            onClick={copyPost}
+            className="mt-4 min-h-11 rounded-full bg-signal px-5 text-sm text-void"
+          >
+            {postCopied ? "Copied" : "Copy the post"}
+          </button>
         </div>
       </section>
 
