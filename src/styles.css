@@ -1,0 +1,119 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "Fraunces";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("/fonts/fraunces.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Outfit";
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url("/fonts/outfit.woff2") format("woff2");
+}
+
+@theme {
+  --color-cream: #fbf9f5;
+  --color-ink: #1c1917;
+  --color-muted: #6f675f;
+  --color-lav: #6e5a86;
+  --color-lav-soft: #efe8f3;
+  --color-silver: #d5d3d8;
+  --color-night: #2a2433;
+  --color-card: #fffcf8;
+  --color-wine: #6e2433;
+  --color-wine-deep: #43151f;
+  --color-wine-soft: #f8efe9;
+  --color-gold: #a67c3d;
+  --color-gold-soft: #f4e7cf;
+  --color-void: #0c0e11;
+  --color-paper: #e7e2d8;
+  --color-dim: #9a9488;
+  --color-line: #2a2926;
+  --color-signal: #e2a04a;
+  --font-sans: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Fraunces", ui-serif, Georgia, serif;
+  --radius-card: 1.35rem;
+}
+
+/* Weight 400 was requested while only 560/640 were loaded, so the browser
+   faked the cut. Pin the real axis and give the serif room for descenders. */
+.font-display {
+  font-weight: 560;
+  font-optical-sizing: auto;
+  font-variation-settings: "SOFT" 20, "WONK" 0;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+}
+
+@keyframes ribbon {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.ribbon-track {
+  animation: ribbon 32s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ribbon-track {
+    animation: none;
+  }
+}
+
+.hero-shade {
+  background: linear-gradient(
+    to top,
+    var(--color-void) 0%,
+    color-mix(in srgb, var(--color-void) 72%, transparent) 28%,
+    color-mix(in srgb, var(--color-void) 28%, transparent) 58%,
+    transparent 100%
+  );
+}
+
+.fiber-band {
+  min-height: 28rem;
+}
+
+.fiber-shade {
+  background: linear-gradient(
+    to right,
+    var(--color-void) 0%,
+    color-mix(in srgb, var(--color-void) 40%, transparent) 46%,
+    transparent 100%
+  );
+}
+
+@layer base {
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    background: var(--color-void);
+    color: var(--color-paper);
+    font-family: var(--font-sans);
+    font-weight: 400;
+    text-rendering: optimizeLegibility;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}

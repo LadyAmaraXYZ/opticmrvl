@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="OPTIC">
+  <rect width="32" height="32" rx="6" fill="#0c0e11"/>
+  <circle cx="16" cy="16" r="7" fill="none" stroke="#e7e2d8" stroke-width="2.5"/>
+  <rect x="3" y="14" width="26" height="4" rx="0.6" fill="#e2a04a"/>
+</svg>
